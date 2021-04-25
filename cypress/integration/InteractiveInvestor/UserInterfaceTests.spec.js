@@ -6,23 +6,6 @@ describe('User login scenarios', () => {
 
     const test = new UserInterfacePage()
 
-    //Test variables and elements
-    const AccountList = "div[aria-label='Our Accounts']"
-    const InvestingList ="div[aria-label='Investing']"
-    const TradingAccountURL = "https://www.ii.co.uk/ii-accounts/trading-account"
-    const TradingAccountPageTitle = "Open an Online Trading Account Today - interactive investor"
-
-    const PensionList = "div[class='css-187k5ja']"
-    const SIPPURL = "https://www.ii.co.uk/ii-accounts/sipp"
-    const SIPPPageTitle = "Open a SIPP Account | Self-Invested Personal Pension - interactive investor"
-
-    const InvestmentTypeList = "div[aria-label='Investment Type']"
-    const IdeasAndToolsList = "div[aria-label='Ideas & Tools']"
-    const Shares = "div[aria-label='Investment Type']>a:first-of-type>div"
-    const ShareURL = "https://www.ii.co.uk/shares"
-    const SharesPageTitle = "Stocks & Shares Prices | Today’s Live Markets - interactive investor"
-
-
     beforeEach(()=>{
 
         cy.visit("https://www.ii.co.uk/")
@@ -33,7 +16,7 @@ describe('User login scenarios', () => {
         test.ClickOnServices()
 
         //Asserting that 'Our Accounts' have the correct option list
-        cy.get(AccountList)
+        cy.get(test.AccountList)
         .should('contain.text', 'Trading Account')
         .should('contain.text', 'Stocks and Shares ISA')
         .should('contain.text', 'SIPP')
@@ -41,7 +24,7 @@ describe('User login scenarios', () => {
         .should('contain.text', 'See all ii Account')
          
         //Asserting that 'Investing' have the correct option list
-        cy.get(InvestingList)
+        cy.get(test.InvestingList)
         .should('contain.text', 'Our Charges')
         .should('contain.text', 'Investing with ii')
         .should('contain.text', 'Transferring to ii')
@@ -54,8 +37,8 @@ describe('User login scenarios', () => {
 
         //Clicking on 'Trading Account' and validating page title
         cy.contains('Trading Account').click()
-        cy.url().should('eq', TradingAccountURL)
-        cy.title().should('eq', TradingAccountPageTitle)
+        cy.url().should('eq', test.TradingAccountURL)
+        cy.title().should('eq', test.TradingAccountPageTitle)
         
         //Asserting the 'open an account' button
         cy.contains('open an account')
@@ -68,7 +51,7 @@ describe('User login scenarios', () => {
         test.ClickOnPensions()
 
         //Validating 'Pensions' list
-        cy.get(PensionList)
+        cy.get(test.PensionList)
         .should('contain.text', 'ii SIPP')
         .should('contain.text', 'Open a SIPP')
         .should('contain.text', 'Transfer My Pension')
@@ -80,8 +63,8 @@ describe('User login scenarios', () => {
         
         //Clicking on 'ii SIPP' and validating page title
         cy.contains('ii SIPP').click()
-        cy.url().should('eq', SIPPURL)
-        cy.title().should('eq', SIPPPageTitle)
+        cy.url().should('eq', test.SIPPURL)
+        cy.title().should('eq', test.SIPPPageTitle)
 
         //Validating 'open a SIPP' button
         cy.contains('open a SIPP')
@@ -94,7 +77,7 @@ describe('User login scenarios', () => {
        test.ClickOnResearch()
 
        //Asserting that 'Investment Type' have the correct option list
-       cy.get(InvestmentTypeList)
+       cy.get(test.InvestmentTypeList)
        .should('contain.text', 'Shares')
        .should('contain.text', 'Funds')
        .should('contain.text', 'Investment trusts')
@@ -102,7 +85,7 @@ describe('User login scenarios', () => {
        .should('contain.text', 'Advanced Investing')
 
        //Asserting that 'Ideas & Tools have the correct option list
-       cy.get(IdeasAndToolsList)
+       cy.get(test.IdeasAndToolsList)
        .should('contain.text', 'ii Super 60 Investments')
        .should('contain.text', 'Quick Start Funds')
        .should('contain.text', 'Model Portfolios')
@@ -114,9 +97,9 @@ describe('User login scenarios', () => {
        .should('contain.text', 'Virtual Portfolio')
 
        //Clicking on 'ii SIPP' and validating page title
-       cy.get(Shares).click()
-       cy.url().should('eq', ShareURL)
-       cy.title().should('eq', SharesPageTitle)
+       cy.get(test.Shares).click()
+       cy.url().should('eq', test.ShareURL)
+       cy.title().should('eq', test.SharesPageTitle)
 
        //Validating the 'open an account' button
        cy.contains('open an account')
